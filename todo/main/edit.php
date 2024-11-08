@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDolist編集</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
 <body>
     <h2>ToDoリスト</h2> 
@@ -30,7 +32,7 @@
                 <td><input type="text" name="task" value="<?= $todos['task'] ?>"></td>  <!-- valueで前のページの入力していたものを表示させる -->
                 <td><textarea name="explanation" id="explanation"><?= $todos['explanation'] ?></textarea></td> <!-- textareaは<textarea>ここにかく</textarea> -->
                 <td><input type="date" name="createdate" ></td>
-                <td><input type="submit" name="update" value="更新" id="submit">
+                <td><input type="submit" name="update" value="更新" id="edit">
                </form>
             </td>
         </tr>

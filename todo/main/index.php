@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDolistマイページ</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>ToDoリスト</h2> 
     <?php 
     require_once '../menu.php'; 
     require_once 'add.php'; // session_start();が書かれているところ
@@ -18,21 +20,33 @@
         unset ($_SESSION['message']);
     }
     ?>
-
-    
-    <h2>予定</h2>
-    <form action="index.php"  method="POST">
-        <p>タスク名/タイトル</p>
-        <input type="text" name="task" placeholder="例）勉強、買い物など" required>
-        <p>説明</p>
-        <textarea name="explanation" id="textbox" placeholder="例）友達とショッピングモール" required></textarea>
-        <p>日時</p>
-        <input type="date" name="createdate" required><br>
-        <button type="submit" name="add">追加</button>
-    </form>
-
+<div class="main">
+    <div class="todo">
+        <form action="index.php"  method="POST">
+            <label class="label">
+            タスク名/タイトル
+            <input type="text" id="text" name="task" placeholder="例）勉強、買い物など" required>
+            </label>
+            <label class="label">
+            説明
+            <textarea name="explanation" id="textbox" placeholder="例）友達とショッピングモール" required></textarea>
+            </label>
+            <label class="label">
+            日時
+         <input type="date" id="date" name="createdate" required><br>
+            </label>
+            <button type="submit" id="submit" name="add">追加</button>
+        </form>
+    </div>
+<div class="list">
     <h2>リスト</h2>
-    <table>
+    <table id="box">
+        <colgroup>
+        <col/>
+        <col/>
+        <col/>
+        <col style="width: 10%;"/>
+    </colgroup>
        <thead>
            <tr>
                
@@ -42,6 +56,7 @@
                <th>編集・削除</th>
            </tr>
        </thead>
+       <div clsss="dlt">
        <tbody>
        <?php foreach ($todolist as $todo): ?>   <!-- add.phpのSELECTで取得してきた値を回して配列をそれぞれ受け取って表示させる -->
         <tr>
@@ -49,20 +64,22 @@
             <td><?= htmlspecialchars($todo['explanation']); ?></td>
             <td><?= htmlspecialchars($todo['createdate']); ?></td>
             <td>
-            <form action="edit.php" method="GET">
+            <form action="edit.php" class="btn" method="GET">
                 <input type="hidden" name="postid" value="<?= $todo['id'] ?>"> 
-                <input type="submit" value="編集" id="submit">
+                <input type="submit" value="編集" id="edit">
                 </form>
                 
-            <form action="delete_form.php" method="GET">
+            <form action="delete_form.php" class="btn" method="GET">
                 <input type="hidden" name="postid" value="<?= $todo['id'] ?>">
-                <input type="submit" value="削除" id="submit">
+                <input type="submit" value="削除" id="delete">
             </form>
             </td>
-           
         </tr>
         <?php endforeach; ?>
        </tbody>
+       </div>
     </table>
+    </div>
+</div>  
 </body>
 </html>

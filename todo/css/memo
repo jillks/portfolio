@@ -1,0 +1,24 @@
+table {
+    margin: auto;
+    /* width: 100%; */
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #999;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 10px 25px;
+    border-bottom: 1px solid #999;
+  }
+  th {
+    background-color: #E4C1B5;
+  }
+  td:not(:first-child) { /* :not(first-child)はじめのtd */
+    border-left: 1px solid #999;
+  }
+  tr:last-child th,
+  tr:last-child td {
+    border-bottom: none;
+  }
